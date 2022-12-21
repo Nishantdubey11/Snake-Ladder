@@ -2,15 +2,21 @@ package com.example.snake_ladder;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Snake_Ladder extends Application {
     public static final int tileSize = 40, height=10, width=10;
+    int lowerLine = tileSize*height;
+
+    Player firstPlayer = new Player(tileSize, Color.BLACK, "Amit");
+    Player secondPlayer = new Player(tileSize-10, Color.WHITE, "abcd");
 
     Pane createContent(){
         Pane root = new Pane();
@@ -31,7 +37,15 @@ public class Snake_Ladder extends Application {
         boardImage.setFitWidth(tileSize*width);
         boardImage.setFitHeight(tileSize*height);
 
-        root.getChildren().add(boardImage);
+        Button playeroneButton = new Button("Player One");
+        playeroneButton.setTranslateX(20);
+        playeroneButton.setTranslateY(lowerLine+20);
+        Button playertwoButton = new Button("Player Two");
+        playertwoButton.setTranslateX(250);
+        playertwoButton.setTranslateY(lowerLine+20);
+
+        root.getChildren().addAll(boardImage, playeroneButton, playertwoButton, firstPlayer.getCoin(), secondPlayer.getCoin());
+
         return root;
     }
 
